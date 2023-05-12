@@ -1,0 +1,4 @@
+djangorestframework
+django-simple-history
+pillow
+
