@@ -21,7 +21,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # LOCAL
+    'apps.base',
     'apps.users',
+    'apps.products',
+    'apps.expense_manager',
     # THIRD
     'rest_framework',
     'simple_history',
