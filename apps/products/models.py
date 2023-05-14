@@ -4,11 +4,13 @@ from django.db import models
 from apps.base.models import BaseModel
 # Create your models here.
 
+
 class MeasureUnit(BaseModel):
     """Model definition for MeasureUnit."""
 
     # TODO: Define fields here
-    description = models.CharField('Descripción', max_length=50, blank=False, null=False, unique=True)
+    description = models.CharField(
+        'Descripción', max_length=50, blank=False, null=False, unique=True)
 
     class Meta:
         """Meta definition for MeasureUnit."""
@@ -20,11 +22,13 @@ class MeasureUnit(BaseModel):
         """Unicode representation of MeasureUnit."""
         return self.description
 
+
 class CategoryProduct(BaseModel):
     """Model definition for CategoryProduct."""
 
     # TODO: Define fields here
-    description = models.CharField('Descripcion', max_length=50, unique=True, null=False, blank=False)
+    description = models.CharField(
+        'Descripcion', max_length=50, unique=True, null=False, blank=False)
 
     class Meta:
         """Meta definition for CategoryProduct."""
@@ -36,12 +40,14 @@ class CategoryProduct(BaseModel):
         """Unicode representation of CategoryProduct."""
         return self.description
 
+
 class Indicator(BaseModel):
     """Model definition for Indicator."""
 
     # TODO: Define fields here
     descount_value = models.PositiveSmallIntegerField(default=0)
-    category_product = models.ForeignKey(CategoryProduct, on_delete=models.CASCADE, verbose_name='Indicador de Oferta')
+    category_product = models.ForeignKey(
+        CategoryProduct, on_delete=models.CASCADE, verbose_name='Indicador de Oferta')
 
     class Meta:
         """Meta definition for Indicator."""
@@ -51,18 +57,24 @@ class Indicator(BaseModel):
 
     def __str__(self):
         """Unicode representation of Indicator."""
-        return f'Oferta de la categoría {self.category_product} : {self.descount_value}%' 
+        return f'Oferta de la categoría {self.category_product} : {self.descount_value}%'
+
 
 class Product(BaseModel):
     """Model definition for Product."""
 
     # TODO: Define fields here
-    name = models.CharField('Nombre de Producto', max_length=150, unique=True, blank=False, null=False)
-    description = models.TextField('Descripción de Producto', blank=False, null=False)
-    image = models.ImageField('Imagen del Producto', upload_to='products/', blank=True, null=True)
-    measure_unit = models.ForeignKey(MeasureUnit, on_delete=models.CASCADE, verbose_name='Unidad de Medida', null=True)
-    category_product = models.ForeignKey(CategoryProduct, on_delete=models.CASCADE, verbose_name='Categoria de Producto', null=True)
-    
+    name = models.CharField(
+        'Nombre de Producto', max_length=150, unique=True, blank=False, null=False)
+    description = models.TextField(
+        'Descripción de Producto', blank=False, null=False)
+    image = models.ImageField('Imagen del Producto',
+                              upload_to='products/', blank=True, null=True)
+    measure_unit = models.ForeignKey(
+        MeasureUnit, on_delete=models.CASCADE, verbose_name='Unidad de Medida', null=True)
+    category_product = models.ForeignKey(
+        CategoryProduct, on_delete=models.CASCADE, verbose_name='Categoria de Producto', null=True)
+
     class Meta:
         """Meta definition for Product."""
 

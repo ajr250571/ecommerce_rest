@@ -84,7 +84,9 @@ class UserSerializer(serializers.ModelSerializer):
         return instance
 
     # PATCH
+
     def partial_update(self, instance, validated_data):
+        '''
         instance.username = validated_data.get('username', instance.username)
         instance.last_name = validated_data.get(
             'last_name', instance.last_name)
@@ -92,11 +94,9 @@ class UserSerializer(serializers.ModelSerializer):
         instance.email = validated_data.get('email', instance.email)
         instance.save()
         return instance
-
         '''
         updated_user = super().update(instance, validated_data)
         if 'password' in validated_data:
             updated_user.set_password(validated_data['password'])
         updated_user.save()
         return updated_user
-        '''

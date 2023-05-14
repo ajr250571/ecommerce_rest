@@ -53,7 +53,6 @@ class UserViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         # Aquí puedes agregar tu lógica personalizada antes de guardar el objeto
         # Por ejemplo, puedes modificar los datos validados antes de guardarlos
-        
         '''
         password = serializer.validated_data.get('password')
         try:
@@ -70,6 +69,7 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer.save()
 
 
+'''
 @api_view(['GET', 'POST'])
 def user_api_view(request):
     if request.method == 'GET':
@@ -90,3 +90,4 @@ class UserAPIView(APIView):
         users = User.objects.all()
         users_serializer = UserSerializer(users, many=True)
         return Response(users_serializer.data)
+'''
