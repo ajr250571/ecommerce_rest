@@ -5,7 +5,8 @@ from apps.users.models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ('id', 'username', 'last_name', 'name', 'email', 'password',)
+        # '__all__'
         # ('id', 'username', 'last_name', 'name', 'email', 'password',)
 
     # VALIDATES
@@ -74,34 +75,28 @@ class UserSerializer(serializers.ModelSerializer):
         updated_user.save()
         return updated_user
         '''
-        
         instance.username = validated_data.get('username', instance.username)
-        instance.last_name = validated_data.get('last_name', instance.last_name)
+        instance.last_name = validated_data.get(
+            'last_name', instance.last_name)
         instance.name = validated_data.get('name', instance.name)
         instance.email = validated_data.get('email', instance.email)
         instance.save()
         return instance
-        
-        
-        
-        
 
     # PATCH
     def partial_update(self, instance, validated_data):
-        
         instance.username = validated_data.get('username', instance.username)
-        instance.last_name = validated_data.get('last_name', instance.last_name)
+        instance.last_name = validated_data.get(
+            'last_name', instance.last_name)
         instance.name = validated_data.get('name', instance.name)
         instance.email = validated_data.get('email', instance.email)
         instance.save()
         return instance
-        
-        
+
         '''
         updated_user = super().update(instance, validated_data)
-        updated_user.set_password(validated_data['password'])
+        if 'password' in validated_data:
+            updated_user.set_password(validated_data['password'])
         updated_user.save()
         return updated_user
         '''
-        
-        
