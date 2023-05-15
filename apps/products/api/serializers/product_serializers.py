@@ -23,3 +23,12 @@ class ProductSerializer(serializers.ModelSerializer):
             'measure_unit': instance.measure_unit.description,
             'category_product': instance.category_product.description
         }
+
+    '''
+    def update(self, instance, validated_data):
+        updated_product = super().update(instance, validated_data)
+        if 'image' in validated_data:
+            instance.image = validated_data.get('image', instance.image)
+        updated_product.save()
+        return updated_product
+    '''
